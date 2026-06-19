@@ -101,3 +101,54 @@
  
   <!-- Sidebar overlay (mobile) -->
   <div class="sidebar__overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+
+<!-- Main Content -->
+  <main class="main" role="main">
+ 
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <!-- Mobile hamburger -->
+      <button class="header__menu-btn" id="sidebarOpenBtn" aria-label="Open sidebar" aria-expanded="false" aria-controls="sidebar">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+ 
+      <div class="header__info">
+        <h1 class="header__title">NexusAI</h1>
+        <p class="header__subtitle">Powered by advanced language models</p>
+      </div>
+ 
+      <!-- Status indicator -->
+      <div class="header__status" aria-label="Model status: online">
+        <span class="header__status-dot" aria-hidden="true"></span>
+        <span class="header__status-label">Online</span>
+      </div>
+    </header>
+ 
+    <!-- CHAT CONTAINER -->
+    <section class="chat-container" id="chatContainer" aria-live="polite" aria-label="Conversation">
+ 
+      <!-- WELCOME SCREEN (shown before any messages) -->
+      <div class="welcome" id="welcomeScreen" role="region" aria-label="Welcome screen">
+        <div class="welcome__icon" aria-hidden="true">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="27" stroke="url(#wGrad)" stroke-width="2"/>
+            <path d="M16 28 L28 16 L40 28 L28 40 Z" fill="url(#wGrad)"/>
+            <circle cx="28" cy="28" r="5" fill="url(#wGrad2)"/>
+            <defs>
+              <linearGradient id="wGrad" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#38BDF8"/>
+                <stop offset="100%" stop-color="#818CF8"/>
+              </linearGradient>
+              <linearGradient id="wGrad2" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#E0F2FE"/>
+                <stop offset="100%" stop-color="#C7D2FE"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+ 
+        <h2 class="welcome__title">How can I help you today?</h2>
+        <p class="welcome__subtitle">Ask me anything — I'm ready to think alongside you.</p>
