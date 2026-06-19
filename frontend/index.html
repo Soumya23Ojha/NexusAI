@@ -152,3 +152,136 @@
  
         <h2 class="welcome__title">How can I help you today?</h2>
         <p class="welcome__subtitle">Ask me anything — I'm ready to think alongside you.</p>
+          <!-- Suggestion Cards -->
+        <div class="welcome__suggestions" role="list" aria-label="Suggested prompts">
+ 
+          <button class="suggestion-card" role="listitem" data-prompt="Explain JavaScript closures with a practical example" aria-label="Suggest: Explain JavaScript Closures">
+            <span class="suggestion-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 4l-4 6 4 6M14 4l4 6-4 6M11 3l-2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="suggestion-card__title">Explain JavaScript Closures</span>
+            <span class="suggestion-card__desc">With a clear, practical example</span>
+          </button>
+ 
+          <button class="suggestion-card" role="listitem" data-prompt="Write a Python function to read a CSV file and calculate column statistics" aria-label="Suggest: Write Python Code">
+            <span class="suggestion-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 8l2 2-2 2M11 12h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="suggestion-card__title">Write Python Code</span>
+            <span class="suggestion-card__desc">Clean, well-commented scripts</span>
+          </button>
+ 
+          <button class="suggestion-card" role="listitem" data-prompt="Generate a SQL query to find the top 10 customers by total purchase amount" aria-label="Suggest: Generate SQL Query">
+            <span class="suggestion-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><ellipse cx="10" cy="6" rx="7" ry="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 6v4c0 1.66 3.13 3 7 3s7-1.34 7-3V6" stroke="currentColor" stroke-width="1.8"/><path d="M3 10v4c0 1.66 3.13 3 7 3s7-1.34 7-3v-4" stroke="currentColor" stroke-width="1.8"/></svg>
+            </span>
+            <span class="suggestion-card__title">Generate SQL Query</span>
+            <span class="suggestion-card__desc">Optimized for your database</span>
+          </button>
+ 
+          <button class="suggestion-card" role="listitem" data-prompt="Summarize the following text and extract the key points:" aria-label="Suggest: Summarize Text">
+            <span class="suggestion-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 5h12M4 9h12M4 13h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </span>
+            <span class="suggestion-card__title">Summarize Text</span>
+            <span class="suggestion-card__desc">Pull out the essential ideas</span>
+          </button>
+ 
+        </div>
+      </div>
+
+      <!-- /WELCOME SCREEN -->
+ 
+      <!-- Messages injection using JavaScript -->
+      <div class="messages" id="messagesContainer" role="log" aria-label="Chat messages"></div>
+ 
+    </section>
+    <!-- /CHAT CONTAINER -->
+ 
+    <!-- INPUT AREA -->
+    <div class="input-area" role="region" aria-label="Message input">
+      <div class="input-area__inner">
+ 
+        <!-- Attachment button (disabled) -->
+        <button class="input-area__icon-btn" disabled aria-label="Attach file (coming soon)" title="Attach file – coming soon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M15.5 8.5l-7 7a4.5 4.5 0 01-6.36-6.36l7-7a3 3 0 014.24 4.24l-7.07 7.07a1.5 1.5 0 01-2.12-2.12l6.36-6.37" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+ 
+        <!-- Textarea wrapper -->
+        <div class="input-area__textarea-wrap">
+          <textarea
+            class="input-area__textarea"
+            id="messageInput"
+            placeholder="Type your message…"
+            rows="1"
+            maxlength="4000"
+            aria-label="Message input"
+            aria-multiline="true"
+          ></textarea>
+        </div>
+ 
+        <!-- Microphone button (disabled) -->
+        <button class="input-area__icon-btn" disabled aria-label="Voice input (coming soon)" title="Voice input – coming soon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="6" y="1" width="6" height="10" rx="3" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M3 9a6 6 0 0012 0M9 15v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+ 
+        <!-- Send button -->
+        <button class="input-area__send-btn" id="sendBtn" disabled aria-label="Send message">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M2 9h14M10 3l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+ 
+      </div>
+ 
+      <!-- FOOTER -->
+      <footer class="footer" role="contentinfo">
+        <p class="footer__disclaimer">AI responses may contain mistakes. Verify important information.</p>
+      </footer>
+    </div>
+    <!-- /INPUT AREA -->
+ 
+  </main>
+ 
+  <!-- ABOUT MODAL -->
+  <div class="modal-overlay" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle" hidden>
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title" id="aboutModalTitle">About NexusAI</h2>
+        <button class="modal__close-btn" id="aboutModalClose" aria-label="Close about dialog">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="modal__logo-wrap" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="url(#mGrad)" stroke-width="2"/>
+            <path d="M8 14 L14 8 L20 14 L14 20 Z" fill="url(#mGrad)"/>
+            <defs>
+              <linearGradient id="mGrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#38BDF8"/>
+                <stop offset="100%" stop-color="#818CF8"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <p>NexusAI is a premium AI assistant interface built with HTML5, CSS3, and Vanilla JavaScript. It is designed for future integration with a Python FastAPI backend powered by the Gemini API.</p>
+        <ul class="modal__feature-list">
+          <li>⚡ Fast, responsive, zero-dependency UI</li>
+          <li>🎨 Premium dark/light theme with CSS variables</li>
+          <li>🔌 Ready for FastAPI + Gemini API integration</li>
+          <li>♿ Fully accessible and keyboard navigable</li>
+        </ul>
+        <p class="modal__version">Version 1.0.0 &nbsp;·&nbsp; MIT License</p>
+      </div>
+    </div>
+  </div>
+ 
+  <script src="script.js"></script>
+</body>
+</html>
