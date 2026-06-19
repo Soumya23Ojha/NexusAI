@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NexusAI – A premium AI assistant interface" />
+  <title>NexusAI – Your Intelligent Assistant</title>
+ 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+ 
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar" role="complementary" aria-label="Navigation sidebar">
+ 
+    <!-- Sidebar Header: Logo + App Name -->
+    <div class="sidebar__header">
+      <div class="sidebar__logo" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="13" stroke="url(#logoGrad)" stroke-width="2"/>
+          <path d="M8 14 L14 8 L20 14 L14 20 Z" fill="url(#logoGrad)"/>
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#38BDF8"/>
+              <stop offset="100%" stop-color="#818CF8"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="sidebar__app-name">NexusAI</span>
+ 
+      <!-- Mobile close button -->
+      <button class="sidebar__close-btn" id="sidebarCloseBtn" aria-label="Close sidebar">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 2L16 16M16 2L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+ 
+    <!-- New Chat Button -->
+    <button class="sidebar__new-chat-btn" id="newChatBtn" aria-label="Start a new chat">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 2V14M2 8H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      New Chat
+    </button>
+ 
+    <!-- Recent Chats Placeholder -->
+    <nav class="sidebar__nav" aria-label="Recent conversations">
+      <p class="sidebar__nav-label">Recent</p>
+      <ul class="sidebar__chat-list" role="list">
+        <li class="sidebar__chat-item sidebar__chat-item--active" role="listitem" tabindex="0">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2h10a1 1 0 011 1v6a1 1 0 01-1 1H8l-3 2V10H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.2"/></svg>
+          Current Conversation
+        </li>
+        <li class="sidebar__chat-item" role="listitem" tabindex="0">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2h10a1 1 0 011 1v6a1 1 0 01-1 1H8l-3 2V10H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.2"/></svg>
+          JavaScript Closures
+        </li>
+        <li class="sidebar__chat-item" role="listitem" tabindex="0">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2h10a1 1 0 011 1v6a1 1 0 01-1 1H8l-3 2V10H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.2"/></svg>
+          Python Data Analysis
+        </li>
+      </ul>
+    </nav>
+ 
+    <!-- Sidebar Footer Actions -->
+    <div class="sidebar__footer">
+      <!-- Theme Toggle -->
+      <button class="sidebar__action-btn" id="themeToggleBtn" aria-label="Toggle light/dark theme">
+        <span class="sidebar__action-icon" id="themeIcon">
+          <!-- Sun icon (shown in dark mode to switch to light) -->
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span id="themeLabel">Light Mode</span>
+      </button>
+ 
+      <!-- About Button -->
+      <button class="sidebar__action-btn" id="aboutBtn" aria-label="About NexusAI">
+        <span class="sidebar__action-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 7v5M8 5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        About
+      </button>
+ 
+      <!-- Version -->
+      <p class="sidebar__version">NexusAI v1.0.0</p>
+    </div>
+</aside>
+ 
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar__overlay" id="sidebarOverlay" aria-hidden="true"></div>
