@@ -1,6 +1,30 @@
+/**
+ * NexusAI – script.js
+ * ─────────────────────────────────────────────────────────────────
+ * Vanilla JS (ES6+), no frameworks.
+ *
+ * Sections:
+ *  1. Configuration & State
+ *  2. DOM References
+ *  3. Theme Management
+ *  4. Sidebar Management
+ *  5. Modal Management
+ *  6. Message Rendering
+ *  7. Typing Indicator
+ *  8. Chat Logic (send, dummy AI, API-ready hook)
+ *  9. Input / Textarea Handling
+ * 10. Suggestion Cards
+ * 11. New Chat
+ * 12. Utility Helpers
+ * 13. Initialisation
+ * ─────────────────────────────────────────────────────────────────
+ */
+
 'use strict';
 
-  //  1. CONFIGURATION & STATE
+/* ═══════════════════════════════════════════════════
+   1. CONFIGURATION & STATE
+═══════════════════════════════════════════════════ */
 
 /** App-wide config */
 const CONFIG = {
@@ -19,8 +43,13 @@ const CONFIG = {
    *   3. Implement fetchAIResponse() below
    * ─────────────────────────────────────────────────────────
    */
-  USE_REAL_API: false,
-  API_ENDPOINT: 'http://localhost:8000/api/chat',
+  USE_REAL_API: true,
+  // ── LOCAL DEVELOPMENT ──────────────────────────────────────────
+  // Keep this URL while running FastAPI locally (python main.py).
+  // ── PRODUCTION ─────────────────────────────────────────────────
+  // When you deploy the backend to Render/Railway, replace this with
+  // your live URL, e.g.: 'https://nexusai-backend.onrender.com/chat'
+  API_ENDPOINT: 'http://127.0.0.1:8000/chat',
 };
 
 /** Mutable application state */
@@ -370,26 +399,56 @@ async function handleSend() {
 }
 
 /**
- * ─── API INTEGRATION POINT ───────────────────────────────────────
- * Replace this stub when the FastAPI backend is ready.
+ * ─── REAL API CALL (FastAPI + OpenAI) ──────────────────────────
+ * Sends the latest user message + full conversation history to
+ * the FastAPI /chat endpoint and returns the AI's reply text.
+ *
+ * Request body shape:
+ *   { message: "...", messages: [{ role, content }, ...] }
+ *
+ * Response shape from backend:
+ *   { response: "..." }
  *
  * @param {Array<{role: string, content: string}>} messages
- * @returns {Promise<string>} The AI's reply text.
+ * @returns {Promise<string>}
  */
 async function fetchAIResponse(messages) {
-  const response = await fetch(CONFIG.API_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ messages }),
-  });
+  // The most recent message is the user's latest input
+  const latestMessage = messages[messages.length - 1]?.content ?? '';
 
-  if (!response.ok) {
-    throw new Error(`API error: ${response.status} ${response.statusText}`);
+  let response;
+  try {
+    response = await fetch(CONFIG.API_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: latestMessage,    // Required by the backend
+        messages: messages,        // Full history for multi-turn context
+      }),
+    });
+  } catch (networkError) {
+    // fetch() itself threw — the server is unreachable
+    throw new Error(
+      'Cannot reach the server. Make sure the backend is running and try again.'
+    );
   }
 
-  const data = await response.json();
-  // Adjust the key below to match your FastAPI response schema
-  return data.reply ?? data.message ?? data.text ?? 'No response from server.';
+  // Parse JSON regardless of status (error responses also have JSON)
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    // FastAPI error responses put the message in data.detail
+    const detail = data.detail ?? `HTTP ${response.status} ${response.statusText}`;
+    throw new Error(detail);
+  }
+
+  // The backend returns { response: "..." }
+  const reply = data.response ?? '';
+  if (!reply.trim()) {
+    throw new Error('The server returned an empty response. Please try again.');
+  }
+
+  return reply;
 }
 
 /**
